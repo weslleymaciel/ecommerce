@@ -1,0 +1,28 @@
+<h3>Produtos E-Commerce</h3>
+<hr>
+<div class="row">
+  <div *ngFor="let produto of (produtos ? produtos.slice(indexStart,indexEnd): []); let i = index" class="col-xs-6 col-md-3">
+    <div class="thumbnail">
+      <img src="{{produto.getImgLarge()}}">
+      <div class="caption">	
+      	<h4>{{produto.getTitulo()}}</h4>
+        <h3>{{produto.getPreco()}}</h3>
+        <p class="descricao">{{produto.getDescricao()}}</p>
+        <p>
+        	<a *ngIf="!produto.getBoolCarrinho()" (click)="adicionarItem(produto)" class="btn btn-primary" role="button">Adicionar no carrinho</a>
+        	<a *ngIf="produto.getBoolCarrinho()" (click)="removeItem(produto)"  class="btn btn-danger" role="button">Remover do carrinho</a> 
+       	</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+	<nav aria-label="Parginação">
+		<ul class="pager">
+			<li [attr.class]="pagina > 0 ? 'previous' : 'previous disabled'"><a (click)="controlaPaginacao('anterior')">Anterior</a></li>
+			<li [attr.class]="pagina < maxPag ? 'next' : 'next disabled'"><a (click)="controlaPaginacao('proximo')">Próximo</a></li>
+		</ul>
+	</nav>
+</div>
+
